@@ -1,4 +1,4 @@
-// Generated from C:/Users/JanRychlik/IdeaProjects/ceskaJava/src/main/antlr4\CeskaJava.g4 by ANTLR 4.9
+// Generated from C:/Users/JanRychlik/Documents/Projects/ceskaJava/src/main/antlr4\CeskaJava.g4 by ANTLR 4.9
 package main.antlr4;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -23,6 +23,168 @@ public interface CeskaJavaVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitVarTypes(CeskaJavaParser.VarTypesContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link CeskaJavaParser#referenceType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReferenceType(CeskaJavaParser.ReferenceTypeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CeskaJavaParser#classOrInterfaceType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitClassOrInterfaceType(CeskaJavaParser.ClassOrInterfaceTypeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CeskaJavaParser#classDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitClassDeclaration(CeskaJavaParser.ClassDeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CeskaJavaParser#normalClassDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNormalClassDeclaration(CeskaJavaParser.NormalClassDeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CeskaJavaParser#typeParameters}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTypeParameters(CeskaJavaParser.TypeParametersContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CeskaJavaParser#typeParameterList}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTypeParameterList(CeskaJavaParser.TypeParameterListContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CeskaJavaParser#typeParameter}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTypeParameter(CeskaJavaParser.TypeParameterContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CeskaJavaParser#typeBound}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTypeBound(CeskaJavaParser.TypeBoundContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CeskaJavaParser#typeVariable}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTypeVariable(CeskaJavaParser.TypeVariableContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CeskaJavaParser#superclass}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSuperclass(CeskaJavaParser.SuperclassContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CeskaJavaParser#classBody}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitClassBody(CeskaJavaParser.ClassBodyContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CeskaJavaParser#classBodyDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitClassBodyDeclaration(CeskaJavaParser.ClassBodyDeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CeskaJavaParser#staticInitializer}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStaticInitializer(CeskaJavaParser.StaticInitializerContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CeskaJavaParser#classMemberDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitClassMemberDeclaration(CeskaJavaParser.ClassMemberDeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CeskaJavaParser#elementValue}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitElementValue(CeskaJavaParser.ElementValueContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CeskaJavaParser#elementValueArrayInitializer}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitElementValueArrayInitializer(CeskaJavaParser.ElementValueArrayInitializerContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CeskaJavaParser#elementValueList}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitElementValueList(CeskaJavaParser.ElementValueListContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CeskaJavaParser#classType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitClassType(CeskaJavaParser.ClassTypeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CeskaJavaParser#classType_lf_classOrInterfaceType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitClassType_lf_classOrInterfaceType(CeskaJavaParser.ClassType_lf_classOrInterfaceTypeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CeskaJavaParser#classType_lfno_classOrInterfaceType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitClassType_lfno_classOrInterfaceType(CeskaJavaParser.ClassType_lfno_classOrInterfaceTypeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CeskaJavaParser#typeArguments}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTypeArguments(CeskaJavaParser.TypeArgumentsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CeskaJavaParser#typeArgumentList}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTypeArgumentList(CeskaJavaParser.TypeArgumentListContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CeskaJavaParser#typeArgument}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTypeArgument(CeskaJavaParser.TypeArgumentContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CeskaJavaParser#wildcard}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWildcard(CeskaJavaParser.WildcardContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CeskaJavaParser#wildcardBounds}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWildcardBounds(CeskaJavaParser.WildcardBoundsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CeskaJavaParser#interfaceType_lf_classOrInterfaceType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInterfaceType_lf_classOrInterfaceType(CeskaJavaParser.InterfaceType_lf_classOrInterfaceTypeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CeskaJavaParser#interfaceType_lfno_classOrInterfaceType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInterfaceType_lfno_classOrInterfaceType(CeskaJavaParser.InterfaceType_lfno_classOrInterfaceTypeContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link CeskaJavaParser#decimalSymbol}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -34,12 +196,6 @@ public interface CeskaJavaVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitModifier(CeskaJavaParser.ModifierContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link CeskaJavaParser#program}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitProgram(CeskaJavaParser.ProgramContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link CeskaJavaParser#block}.
 	 * @param ctx the parse tree
@@ -65,11 +221,41 @@ public interface CeskaJavaVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitBlock_body(CeskaJavaParser.Block_bodyContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link CeskaJavaParser#variable_declaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVariable_declaration(CeskaJavaParser.Variable_declarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CeskaJavaParser#decimal_variable}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDecimal_variable(CeskaJavaParser.Decimal_variableContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CeskaJavaParser#bool_variable}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBool_variable(CeskaJavaParser.Bool_variableContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CeskaJavaParser#parallel_declaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParallel_declaration(CeskaJavaParser.Parallel_declarationContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link CeskaJavaParser#identifier}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitIdentifier(CeskaJavaParser.IdentifierContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CeskaJavaParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpression(CeskaJavaParser.ExpressionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code ifelseStatement}
 	 * labeled alternative in {@link CeskaJavaParser#statement}.
@@ -222,42 +408,6 @@ public interface CeskaJavaVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitMultanddivExpression(CeskaJavaParser.MultanddivExpressionContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link CeskaJavaParser#variable_declaration}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitVariable_declaration(CeskaJavaParser.Variable_declarationContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link CeskaJavaParser#decimal_variable}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitDecimal_variable(CeskaJavaParser.Decimal_variableContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link CeskaJavaParser#bool_variable}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBool_variable(CeskaJavaParser.Bool_variableContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link CeskaJavaParser#parallel_declaration}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitParallel_declaration(CeskaJavaParser.Parallel_declarationContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link CeskaJavaParser#expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitExpression(CeskaJavaParser.ExpressionContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link CeskaJavaParser#literal}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitLiteral(CeskaJavaParser.LiteralContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link CeskaJavaParser#boolean_literal}.
 	 * @param ctx the parse tree

@@ -20,12 +20,12 @@ public class Main {
             } catch (IOException e) {
                 System.out.println("Wrong input file");
             }
-            compile(stream, outputString);
+            compile(stream);
         }
         System.out.println("Program finished");
     }
 
-    private static void compile(CharStream stream, String outputString) {
+    private static void compile(CharStream stream) {
 
     }
 }

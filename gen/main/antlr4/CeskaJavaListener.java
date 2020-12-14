@@ -1,4 +1,4 @@
-// Generated from C:/Users/JanRychlik/IdeaProjects/ceskaJava/src/main/antlr4\CeskaJava.g4 by ANTLR 4.9
+// Generated from C:/Users/JanRychlik/Documents/Projects/ceskaJava/src/main/antlr4\CeskaJava.g4 by ANTLR 4.9
 package main.antlr4;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -28,6 +28,276 @@ public interface CeskaJavaListener extends ParseTreeListener {
 	 */
 	void exitVarTypes(CeskaJavaParser.VarTypesContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link CeskaJavaParser#referenceType}.
+	 * @param ctx the parse tree
+	 */
+	void enterReferenceType(CeskaJavaParser.ReferenceTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CeskaJavaParser#referenceType}.
+	 * @param ctx the parse tree
+	 */
+	void exitReferenceType(CeskaJavaParser.ReferenceTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CeskaJavaParser#classOrInterfaceType}.
+	 * @param ctx the parse tree
+	 */
+	void enterClassOrInterfaceType(CeskaJavaParser.ClassOrInterfaceTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CeskaJavaParser#classOrInterfaceType}.
+	 * @param ctx the parse tree
+	 */
+	void exitClassOrInterfaceType(CeskaJavaParser.ClassOrInterfaceTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CeskaJavaParser#classDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterClassDeclaration(CeskaJavaParser.ClassDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CeskaJavaParser#classDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitClassDeclaration(CeskaJavaParser.ClassDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CeskaJavaParser#normalClassDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterNormalClassDeclaration(CeskaJavaParser.NormalClassDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CeskaJavaParser#normalClassDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitNormalClassDeclaration(CeskaJavaParser.NormalClassDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CeskaJavaParser#typeParameters}.
+	 * @param ctx the parse tree
+	 */
+	void enterTypeParameters(CeskaJavaParser.TypeParametersContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CeskaJavaParser#typeParameters}.
+	 * @param ctx the parse tree
+	 */
+	void exitTypeParameters(CeskaJavaParser.TypeParametersContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CeskaJavaParser#typeParameterList}.
+	 * @param ctx the parse tree
+	 */
+	void enterTypeParameterList(CeskaJavaParser.TypeParameterListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CeskaJavaParser#typeParameterList}.
+	 * @param ctx the parse tree
+	 */
+	void exitTypeParameterList(CeskaJavaParser.TypeParameterListContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CeskaJavaParser#typeParameter}.
+	 * @param ctx the parse tree
+	 */
+	void enterTypeParameter(CeskaJavaParser.TypeParameterContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CeskaJavaParser#typeParameter}.
+	 * @param ctx the parse tree
+	 */
+	void exitTypeParameter(CeskaJavaParser.TypeParameterContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CeskaJavaParser#typeBound}.
+	 * @param ctx the parse tree
+	 */
+	void enterTypeBound(CeskaJavaParser.TypeBoundContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CeskaJavaParser#typeBound}.
+	 * @param ctx the parse tree
+	 */
+	void exitTypeBound(CeskaJavaParser.TypeBoundContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CeskaJavaParser#typeVariable}.
+	 * @param ctx the parse tree
+	 */
+	void enterTypeVariable(CeskaJavaParser.TypeVariableContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CeskaJavaParser#typeVariable}.
+	 * @param ctx the parse tree
+	 */
+	void exitTypeVariable(CeskaJavaParser.TypeVariableContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CeskaJavaParser#superclass}.
+	 * @param ctx the parse tree
+	 */
+	void enterSuperclass(CeskaJavaParser.SuperclassContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CeskaJavaParser#superclass}.
+	 * @param ctx the parse tree
+	 */
+	void exitSuperclass(CeskaJavaParser.SuperclassContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CeskaJavaParser#classBody}.
+	 * @param ctx the parse tree
+	 */
+	void enterClassBody(CeskaJavaParser.ClassBodyContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CeskaJavaParser#classBody}.
+	 * @param ctx the parse tree
+	 */
+	void exitClassBody(CeskaJavaParser.ClassBodyContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CeskaJavaParser#classBodyDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterClassBodyDeclaration(CeskaJavaParser.ClassBodyDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CeskaJavaParser#classBodyDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitClassBodyDeclaration(CeskaJavaParser.ClassBodyDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CeskaJavaParser#staticInitializer}.
+	 * @param ctx the parse tree
+	 */
+	void enterStaticInitializer(CeskaJavaParser.StaticInitializerContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CeskaJavaParser#staticInitializer}.
+	 * @param ctx the parse tree
+	 */
+	void exitStaticInitializer(CeskaJavaParser.StaticInitializerContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CeskaJavaParser#classMemberDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterClassMemberDeclaration(CeskaJavaParser.ClassMemberDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CeskaJavaParser#classMemberDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitClassMemberDeclaration(CeskaJavaParser.ClassMemberDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CeskaJavaParser#elementValue}.
+	 * @param ctx the parse tree
+	 */
+	void enterElementValue(CeskaJavaParser.ElementValueContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CeskaJavaParser#elementValue}.
+	 * @param ctx the parse tree
+	 */
+	void exitElementValue(CeskaJavaParser.ElementValueContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CeskaJavaParser#elementValueArrayInitializer}.
+	 * @param ctx the parse tree
+	 */
+	void enterElementValueArrayInitializer(CeskaJavaParser.ElementValueArrayInitializerContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CeskaJavaParser#elementValueArrayInitializer}.
+	 * @param ctx the parse tree
+	 */
+	void exitElementValueArrayInitializer(CeskaJavaParser.ElementValueArrayInitializerContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CeskaJavaParser#elementValueList}.
+	 * @param ctx the parse tree
+	 */
+	void enterElementValueList(CeskaJavaParser.ElementValueListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CeskaJavaParser#elementValueList}.
+	 * @param ctx the parse tree
+	 */
+	void exitElementValueList(CeskaJavaParser.ElementValueListContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CeskaJavaParser#classType}.
+	 * @param ctx the parse tree
+	 */
+	void enterClassType(CeskaJavaParser.ClassTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CeskaJavaParser#classType}.
+	 * @param ctx the parse tree
+	 */
+	void exitClassType(CeskaJavaParser.ClassTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CeskaJavaParser#classType_lf_classOrInterfaceType}.
+	 * @param ctx the parse tree
+	 */
+	void enterClassType_lf_classOrInterfaceType(CeskaJavaParser.ClassType_lf_classOrInterfaceTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CeskaJavaParser#classType_lf_classOrInterfaceType}.
+	 * @param ctx the parse tree
+	 */
+	void exitClassType_lf_classOrInterfaceType(CeskaJavaParser.ClassType_lf_classOrInterfaceTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CeskaJavaParser#classType_lfno_classOrInterfaceType}.
+	 * @param ctx the parse tree
+	 */
+	void enterClassType_lfno_classOrInterfaceType(CeskaJavaParser.ClassType_lfno_classOrInterfaceTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CeskaJavaParser#classType_lfno_classOrInterfaceType}.
+	 * @param ctx the parse tree
+	 */
+	void exitClassType_lfno_classOrInterfaceType(CeskaJavaParser.ClassType_lfno_classOrInterfaceTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CeskaJavaParser#typeArguments}.
+	 * @param ctx the parse tree
+	 */
+	void enterTypeArguments(CeskaJavaParser.TypeArgumentsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CeskaJavaParser#typeArguments}.
+	 * @param ctx the parse tree
+	 */
+	void exitTypeArguments(CeskaJavaParser.TypeArgumentsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CeskaJavaParser#typeArgumentList}.
+	 * @param ctx the parse tree
+	 */
+	void enterTypeArgumentList(CeskaJavaParser.TypeArgumentListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CeskaJavaParser#typeArgumentList}.
+	 * @param ctx the parse tree
+	 */
+	void exitTypeArgumentList(CeskaJavaParser.TypeArgumentListContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CeskaJavaParser#typeArgument}.
+	 * @param ctx the parse tree
+	 */
+	void enterTypeArgument(CeskaJavaParser.TypeArgumentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CeskaJavaParser#typeArgument}.
+	 * @param ctx the parse tree
+	 */
+	void exitTypeArgument(CeskaJavaParser.TypeArgumentContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CeskaJavaParser#wildcard}.
+	 * @param ctx the parse tree
+	 */
+	void enterWildcard(CeskaJavaParser.WildcardContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CeskaJavaParser#wildcard}.
+	 * @param ctx the parse tree
+	 */
+	void exitWildcard(CeskaJavaParser.WildcardContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CeskaJavaParser#wildcardBounds}.
+	 * @param ctx the parse tree
+	 */
+	void enterWildcardBounds(CeskaJavaParser.WildcardBoundsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CeskaJavaParser#wildcardBounds}.
+	 * @param ctx the parse tree
+	 */
+	void exitWildcardBounds(CeskaJavaParser.WildcardBoundsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CeskaJavaParser#interfaceType_lf_classOrInterfaceType}.
+	 * @param ctx the parse tree
+	 */
+	void enterInterfaceType_lf_classOrInterfaceType(CeskaJavaParser.InterfaceType_lf_classOrInterfaceTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CeskaJavaParser#interfaceType_lf_classOrInterfaceType}.
+	 * @param ctx the parse tree
+	 */
+	void exitInterfaceType_lf_classOrInterfaceType(CeskaJavaParser.InterfaceType_lf_classOrInterfaceTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CeskaJavaParser#interfaceType_lfno_classOrInterfaceType}.
+	 * @param ctx the parse tree
+	 */
+	void enterInterfaceType_lfno_classOrInterfaceType(CeskaJavaParser.InterfaceType_lfno_classOrInterfaceTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CeskaJavaParser#interfaceType_lfno_classOrInterfaceType}.
+	 * @param ctx the parse tree
+	 */
+	void exitInterfaceType_lfno_classOrInterfaceType(CeskaJavaParser.InterfaceType_lfno_classOrInterfaceTypeContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link CeskaJavaParser#decimalSymbol}.
 	 * @param ctx the parse tree
 	 */
@@ -47,16 +317,6 @@ public interface CeskaJavaListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitModifier(CeskaJavaParser.ModifierContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link CeskaJavaParser#program}.
-	 * @param ctx the parse tree
-	 */
-	void enterProgram(CeskaJavaParser.ProgramContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link CeskaJavaParser#program}.
-	 * @param ctx the parse tree
-	 */
-	void exitProgram(CeskaJavaParser.ProgramContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link CeskaJavaParser#block}.
 	 * @param ctx the parse tree
@@ -98,6 +358,46 @@ public interface CeskaJavaListener extends ParseTreeListener {
 	 */
 	void exitBlock_body(CeskaJavaParser.Block_bodyContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link CeskaJavaParser#variable_declaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterVariable_declaration(CeskaJavaParser.Variable_declarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CeskaJavaParser#variable_declaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitVariable_declaration(CeskaJavaParser.Variable_declarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CeskaJavaParser#decimal_variable}.
+	 * @param ctx the parse tree
+	 */
+	void enterDecimal_variable(CeskaJavaParser.Decimal_variableContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CeskaJavaParser#decimal_variable}.
+	 * @param ctx the parse tree
+	 */
+	void exitDecimal_variable(CeskaJavaParser.Decimal_variableContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CeskaJavaParser#bool_variable}.
+	 * @param ctx the parse tree
+	 */
+	void enterBool_variable(CeskaJavaParser.Bool_variableContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CeskaJavaParser#bool_variable}.
+	 * @param ctx the parse tree
+	 */
+	void exitBool_variable(CeskaJavaParser.Bool_variableContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CeskaJavaParser#parallel_declaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterParallel_declaration(CeskaJavaParser.Parallel_declarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CeskaJavaParser#parallel_declaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitParallel_declaration(CeskaJavaParser.Parallel_declarationContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link CeskaJavaParser#identifier}.
 	 * @param ctx the parse tree
 	 */
@@ -107,6 +407,16 @@ public interface CeskaJavaListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitIdentifier(CeskaJavaParser.IdentifierContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CeskaJavaParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpression(CeskaJavaParser.ExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CeskaJavaParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpression(CeskaJavaParser.ExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code ifelseStatement}
 	 * labeled alternative in {@link CeskaJavaParser#statement}.
@@ -367,66 +677,6 @@ public interface CeskaJavaListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitMultanddivExpression(CeskaJavaParser.MultanddivExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link CeskaJavaParser#variable_declaration}.
-	 * @param ctx the parse tree
-	 */
-	void enterVariable_declaration(CeskaJavaParser.Variable_declarationContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link CeskaJavaParser#variable_declaration}.
-	 * @param ctx the parse tree
-	 */
-	void exitVariable_declaration(CeskaJavaParser.Variable_declarationContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link CeskaJavaParser#decimal_variable}.
-	 * @param ctx the parse tree
-	 */
-	void enterDecimal_variable(CeskaJavaParser.Decimal_variableContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link CeskaJavaParser#decimal_variable}.
-	 * @param ctx the parse tree
-	 */
-	void exitDecimal_variable(CeskaJavaParser.Decimal_variableContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link CeskaJavaParser#bool_variable}.
-	 * @param ctx the parse tree
-	 */
-	void enterBool_variable(CeskaJavaParser.Bool_variableContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link CeskaJavaParser#bool_variable}.
-	 * @param ctx the parse tree
-	 */
-	void exitBool_variable(CeskaJavaParser.Bool_variableContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link CeskaJavaParser#parallel_declaration}.
-	 * @param ctx the parse tree
-	 */
-	void enterParallel_declaration(CeskaJavaParser.Parallel_declarationContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link CeskaJavaParser#parallel_declaration}.
-	 * @param ctx the parse tree
-	 */
-	void exitParallel_declaration(CeskaJavaParser.Parallel_declarationContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link CeskaJavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterExpression(CeskaJavaParser.ExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link CeskaJavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitExpression(CeskaJavaParser.ExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link CeskaJavaParser#literal}.
-	 * @param ctx the parse tree
-	 */
-	void enterLiteral(CeskaJavaParser.LiteralContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link CeskaJavaParser#literal}.
-	 * @param ctx the parse tree
-	 */
-	void exitLiteral(CeskaJavaParser.LiteralContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link CeskaJavaParser#boolean_literal}.
 	 * @param ctx the parse tree

@@ -9,5 +9,8 @@
         <module name="ceskaJava" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ceskaJava" target="1.7" />
+    </bytecodeTargetLevel>
   </component>
 </project>

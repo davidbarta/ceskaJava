@@ -1,48 +1,34 @@
-/*
- * https://github.com/antlr/antlr4/blob/master/tool-testsuite/test/org/antlr/v4/test/tool/Java.g4
-*/
-
 grammar CeskaJava;
 
+/*------Boolean-------*/
+BOOLEAN:'pravdivost' ;
+TRUE:'pravda' ;
+FALSE:'lez';
 
-/* ------ Keywords ------  */
-/* Types */
-BOOLEAN : 'boolean' ;
-INT   : 'int' ;
+INT:'cislo' ;
 
-/* Boolean Literals */
-TRUE  : 'true' ;
-FALSE : 'false' ;
+FINAL:'finalni' ;
 
-/* Modifiers */
-FINAL : 'final';
+/*------IF-------*/
+IF:'kdyz' ;
+ELSE:'jinak' ;
+SWITCH:'moznosti' ;
+CASE:'moznost';
+BREAK:'odejdi';
 
-/* If-else */
-IF    : 'if' ;
-ELSE  : 'else' ;
+/*------CYKLY-------*/
+FOR:'tocpro';
+WHILE:'toc' ;
+DO:'pro' ;
+REPEAT:'opakuj';
+UNTIL:'dokud';
 
-/* Switch */
-SWITCH  : 'switch' ;
-CASE  : 'case' ;
-BREAK : 'break';
+/*------TRIDA-------*/
+CLASS : 'trida';
+EXTENDS : 'dedi';
+RETURN: 'vrat';
 
-/* For */
-FOR   : 'for' ;
-DOWNTO   : 'downto' ;
-TO   : 'to' ;
-
-/* While and repeat-until */
-WHILE : 'while' ;
-DO    : 'do' ;
-REPEAT  : 'repeat' ;
-UNTIL : 'until' ;
-
-/* Methods */
-VOID  : 'void' ;
-RETURN : 'return' ;
-
-
-/* ------ Assignment operators ------ */
+/*------OPERATORY-------*/
 OR:         '||' ;
 AND:        '&&' ;
 SAME:       '==' ;
@@ -63,91 +49,51 @@ XUPPER :    'X';
 XLOW :      'x';
 
 
-/* ------ Separators ------ */
+/* ------ ODDELOVACE ------ */
 LPAREN: '(';
 RPAREN: ')';
 LBRACE: '{';
 RBRACE: '}';
 SEMI:   ';';
-COMMA:  ',';
 
 
-/* ------ Literals ------ */
-fragment ZERO : '0' ;
+/* ------ LITERALY ------ */
 
-DecimalNumeral
-	:	ZERO
-	|	NonZeroDigit (Digits? | Underscores Digits)
-	;
+Letter:[a-zA-Z$_];
 
-fragment Digits
-	:	Digit (DigitsAndUnderscores? Digit)?
-	;
+Letter_or_digit:[a-zA-Z0-9$_];
 
-fragment Digit
-	:	ZERO
-	|	NonZeroDigit
-	;
+WHITESPACE:[ \t\r\n\u000C]+ -> skip;
 
-fragment NonZeroDigit
-	:	[1-9]
-	;
+COMMENT : '/*' .*? '*/' -> skip ;
 
-fragment DigitsAndUnderscores
-	:	DigitOrUnderscore+
-	;
+LINE_COMMENT : '//' ~[\r\n]* -> skip;
 
-fragment DigitOrUnderscore
-	:	Digit
-	|	'_'
-	;
+HexNumeral: ZERO [xX] HexDigits;
 
-fragment Underscores
-	:	'_'+
-	;
+fragment ZERO : '0';
 
-HexNumeral
-	: ZERO [xX] HexDigits
-	;
+fragment NonZeroDigit:[1-9];
 
-fragment HexDigits
-	: HexDigit (HexDigitsAndUnderscores? HexDigit)?
-	;
+DecimalNumeral:	ZERO|NonZeroDigit (Digits? | Underscores Digits);
 
-fragment HexDigit
-	:	[0-9a-fA-F]
-	;
+fragment Digits:Digit (DigitsAndUnderscores? Digit)?;
 
-fragment HexDigitsAndUnderscores
-	:	HexDigitOrUnderscore+
-	;
+fragment Digit:	ZERO|NonZeroDigit;
 
-fragment HexDigitOrUnderscore
-	:	HexDigit
-	|	'_'
-	;
+fragment DigitsAndUnderscores:DigitOrUnderscore+;
 
-Letter
-    : [a-zA-Z$_]
-    ;
+fragment DigitOrUnderscore:	Digit|	'_';
 
-Letter_or_digit
-    : [a-zA-Z0-9$_]
-    ;
+fragment Underscores:'_'+;
 
-WHITESPACE
-    : [ \t\r\n\u000C]+ -> skip
-    ;
+fragment HexDigits:HexDigit (HexDigitsAndUnderscores? HexDigit)?;
 
-COMMENT
-    : '/*' .*? '*/' -> skip
-    ;
+fragment HexDigit:[0-9a-fA-F];
 
-LINE_COMMENT
-    : '//' ~[\r\n]* -> skip
-    ;
+fragment HexDigitsAndUnderscores:HexDigitOrUnderscore+;
 
-/* -------------- Grammar -------------- */
+fragment HexDigitOrUnderscore:HexDigit|'_';
 
 boolean_values
     : TRUE
@@ -157,7 +103,134 @@ boolean_values
 varTypes
     : INT
     | BOOLEAN
+    | classType
     ;
+
+referenceType
+	:	classOrInterfaceType
+	;
+
+classOrInterfaceType
+	:	(	classType_lfno_classOrInterfaceType
+		|	interfaceType_lfno_classOrInterfaceType
+		)
+		(	classType_lf_classOrInterfaceType
+		|	interfaceType_lf_classOrInterfaceType
+		)*
+	;
+
+
+classDeclaration
+	:	normalClassDeclaration
+	;
+
+normalClassDeclaration
+	:	CLASS identifier typeParameters? superclass?  classBody
+	;
+
+
+typeParameters
+	:	'<' typeParameterList '>'
+	;
+
+typeParameterList
+	:	typeParameter (',' typeParameter)*
+	;
+
+
+typeParameter
+	:	identifier typeBound?
+	;
+
+typeBound
+	:	EXTENDS typeVariable
+	|	EXTENDS classOrInterfaceType
+	;
+
+typeVariable
+	: identifier
+	;
+
+
+
+superclass
+	:	'dedi' classType
+	;
+
+
+classBody
+	:	'{' classBodyDeclaration* '}'
+	;
+
+classBodyDeclaration
+	:	classMemberDeclaration
+	|	staticInitializer
+	;
+
+staticInitializer
+	:	'staticky' block
+	;
+
+classMemberDeclaration
+	:	function_declaration
+	|	classDeclaration
+	|	';'
+	;
+
+elementValue
+	:	elementValueArrayInitializer
+	;
+
+elementValueArrayInitializer
+	:	'{' elementValueList? ','? '}'
+	;
+
+elementValueList
+	:	elementValue (',' elementValue)*
+	;
+
+classType
+	:	identifier typeArguments?
+	|	classOrInterfaceType '.' identifier typeArguments?
+	;
+
+classType_lf_classOrInterfaceType
+	:	'.' identifier typeArguments?
+	;
+
+classType_lfno_classOrInterfaceType
+	: identifier typeArguments?
+	;
+
+typeArguments
+	:	'<' typeArgumentList '>'
+	;
+
+typeArgumentList
+	:	typeArgument (',' typeArgument)*
+	;
+
+typeArgument
+	:	referenceType
+	|	wildcard
+	;
+wildcard
+	: '?' wildcardBounds?
+	;
+
+wildcardBounds
+	:	'extends' referenceType
+	|	'super' referenceType
+	;
+
+
+interfaceType_lf_classOrInterfaceType
+	:	classType_lf_classOrInterfaceType
+	;
+
+interfaceType_lfno_classOrInterfaceType
+	:	classType_lfno_classOrInterfaceType
+	;
 
 decimalSymbol
     : PLUS
@@ -166,11 +239,6 @@ decimalSymbol
 
 modifier
     : FINAL
-    ;
-
-/* ============= Program ============= */
-program
-    : block EOF
     ;
 
 block
@@ -190,12 +258,32 @@ block_body
     : (statement)+
     ;
 
-/* ============= Identifiers ============= */
+
+variable_declaration
+    :  decimal_variable SEMI
+    |  bool_variable SEMI
+    ;
+
+decimal_variable
+    : (modifier)? INT identifier (parallel_declaration)* EQ integer_literal
+    ;
+
+bool_variable
+    : (modifier)? BOOLEAN identifier (parallel_declaration)* EQ boolean_literal
+    ;
+
+parallel_declaration
+    : EQ identifier
+    ;
+
 identifier
 	:	Letter Letter_or_digit*
 	;
 
-/* ============= Statements ============= */
+expression
+    : LPAREN expression_body RPAREN
+    ;
+
 statement
     : IF expression body (ELSE body)?               #ifelseStatement
     | WHILE expression body                         #whileStatement
@@ -219,7 +307,6 @@ return_statement
     | RETURN
     ;
 
-/* ============= Expression ============= */
 expression_body
     : boolean_values    #boolExpression
     | identifier #identifierExpression
@@ -232,105 +319,7 @@ expression_body
     | NEGATION expression_body #negationExpression
     ;
 
-/* ============= Variable declaration ============= */
-/**
-variable_declaration
-  :  modifier? varTypes variable_declarators
-  ;
 
-  variable_declarators
-    :  variable_declarator
-    |  variable_declarators COMMA variable_declarator
-    ;
-
-  variable_declarator
-    :  identifier
-    |  identifier EQ expression
-    ;
-**/
-
-variable_declaration
-    :  decimal_variable SEMI
-    |  bool_variable SEMI
-    ;
-
-decimal_variable
-    : (modifier)? INT identifier (parallel_declaration)* EQ integer_literal
-    ;
-
-bool_variable
-    : (modifier)? BOOLEAN identifier (parallel_declaration)* EQ boolean_literal
-    ;
-
-parallel_declaration
-    : EQ identifier
-    ;
-
-/* ============= Expression ============= */
-/**
-expression
-    : conditional_expression
-    | assigment_expression
-    ;
-
-assigment_expression
-    : conditional_expression EQ expression
-    ;
-
-conditional_expression
-    : infix_expression
-    | infix_expression QUESTION expression COLON conditional_expression
-    ;
-
-infix_expression
-    : prefix_expression
-    | infix_expression infix_op prefix_expression
-    ;
-
-infix_op
-    : OR
-    | AND
-    | SAME
-    | NOT_EQ
-    | LT
-    | GT
-    | LE
-    | GE
-    | PLUS
-    | MINUS
-    | MULT
-    | DIV
-    ;
-
-prefix_expression
-    : prefix_op prefix_expression
-    | postfix_expression
-    ;
-
-postfix_expression
-    : LPAREN expression RPAREN
-    | literal
-    | identifier
-    | function_call_statement
-    ;
-
-prefix_op
-    : NEGATION
-    | MINUS
-    ;
-**/
-
-expression
-    : LPAREN expression_body RPAREN
-    ;
-
-/* ============= LITERALS ============= */
-literal
-    : integer_literal
-    | boolean_literal
-    ;
-
-/* Boolean literal */
 boolean_literal
     : TRUE
     | FALSE
@@ -339,7 +328,7 @@ boolean_literal
     | expression
     ;
 
-/* Decimal integer literal */
+
 integer_literal
     : decimalSymbol? DecimalNumeral
     | HexNumeral
@@ -348,8 +337,6 @@ integer_literal
     | expression
     ;
 
-
-/* ============= FOR ============= */
 for_type
   : TO
   | DOWNTO
@@ -363,13 +350,12 @@ for_statement
   : LPAREN for_init for_type integer_literal RPAREN
   ;
 
-/* ============= SWITCH ============= */
+
 switch_block
   : CASE DecimalNumeral COLON body
   | BREAK SEMI
   ;
 
-/* ============= FUNCTION ============= */
 function_declaration
   : function_header function_body
   ;
