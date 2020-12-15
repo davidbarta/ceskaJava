@@ -95,297 +95,160 @@ fragment HexDigitsAndUnderscores:HexDigitOrUnderscore+;
 
 fragment HexDigitOrUnderscore:HexDigit|'_';
 
-boolean_values
-    : TRUE
-    | FALSE
-    ;
-
-varTypes
-    : INT
-    | BOOLEAN
-    | classType
-    ;
-
-referenceType
-	:	classOrInterfaceType
-	;
-
-classOrInterfaceType
-	:	(	classType_lfno_classOrInterfaceType
-		|	interfaceType_lfno_classOrInterfaceType
-		)
-		(	classType_lf_classOrInterfaceType
-		|	interfaceType_lf_classOrInterfaceType
-		)*
-	;
-
-
-classDeclaration
-	:	normalClassDeclaration
-	;
-
-normalClassDeclaration
-	:	CLASS identifier typeParameters? superclass?  classBody
-	;
-
-
-typeParameters
-	:	'<' typeParameterList '>'
-	;
-
-typeParameterList
-	:	typeParameter (',' typeParameter)*
-	;
-
-
-typeParameter
-	:	identifier typeBound?
-	;
-
-typeBound
-	:	EXTENDS typeVariable
-	|	EXTENDS classOrInterfaceType
-	;
-
-typeVariable
-	: identifier
-	;
-
-
-
-superclass
-	:	'dedi' classType
-	;
-
-
-classBody
-	:	'{' classBodyDeclaration* '}'
-	;
-
-classBodyDeclaration
-	:	classMemberDeclaration
-	|	staticInitializer
-	;
-
-staticInitializer
-	:	'staticky' block
-	;
-
-classMemberDeclaration
-	:	function_declaration
-	|	classDeclaration
-	|	';'
-	;
-
-elementValue
-	:	elementValueArrayInitializer
-	;
-
-elementValueArrayInitializer
-	:	'{' elementValueList? ','? '}'
-	;
-
-elementValueList
-	:	elementValue (',' elementValue)*
-	;
-
-classType
-	:	identifier typeArguments?
-	|	classOrInterfaceType '.' identifier typeArguments?
-	;
-
-classType_lf_classOrInterfaceType
-	:	'.' identifier typeArguments?
-	;
-
-classType_lfno_classOrInterfaceType
-	: identifier typeArguments?
-	;
-
-typeArguments
-	:	'<' typeArgumentList '>'
-	;
-
-typeArgumentList
-	:	typeArgument (',' typeArgument)*
-	;
-
-typeArgument
-	:	referenceType
-	|	wildcard
-	;
-wildcard
-	: '?' wildcardBounds?
-	;
-
-wildcardBounds
-	:	'extends' referenceType
-	|	'super' referenceType
-	;
-
-
-interfaceType_lf_classOrInterfaceType
-	:	classType_lf_classOrInterfaceType
-	;
-
-interfaceType_lfno_classOrInterfaceType
-	:	classType_lfno_classOrInterfaceType
-	;
-
-decimalSymbol
-    : PLUS
-    | MINUS
-    ;
-
-modifier
-    : FINAL
-    ;
-
-block
-    : LBRACE block_statement? RBRACE
-    ;
-
-body
-    : LBRACE block_body? RBRACE
-    ;
-
-block_statement
-    : (statement
-    | function_declaration)+
-    ;
-
-block_body
-    : (statement)+
-    ;
-
-
-variable_declaration
-    :  decimal_variable SEMI
-    |  bool_variable SEMI
-    ;
-
-decimal_variable
-    : (modifier)? INT identifier (parallel_declaration)* EQ integer_literal
-    ;
-
-bool_variable
-    : (modifier)? BOOLEAN identifier (parallel_declaration)* EQ boolean_literal
-    ;
-
-parallel_declaration
-    : EQ identifier
-    ;
-
-identifier
-	:	Letter Letter_or_digit*
-	;
-
-expression
-    : LPAREN expression_body RPAREN
-    ;
-
-statement
-    : IF expression body (ELSE body)?               #ifelseStatement
-    | WHILE expression body                         #whileStatement
-    | DO body WHILE expression                      #dowhileStatement
-    | WHILE expression DO body                      #whiledoStatement
-    | REPEAT body UNTIL expression                  #repeatuntilStatement
-    | FOR for_statement body                        #forStatement
-    | SWITCH expression LBRACE switch_block* RBRACE #switchStatement
-    | function_call_statement                       #functioncallStatement
-    | variable_assigment                            #varassigmentStatement
-    | variable_declaration                          #vardeclarationStatement
-    | return_statement SEMI                         #returnStatement
-    ;
-
-variable_assigment
-    : identifier EQ expression_body SEMI
-    ;
-
-return_statement
-    : RETURN expression
-    | RETURN
-    ;
-
-expression_body
-    : boolean_values    #boolExpression
-    | identifier #identifierExpression
-    | function_call_statement #funccallExpression
-    | expression_body op=(MULT | DIV) expression_body #multanddivExpression
-    | expression_body op=(PLUS | MINUS) expression_body #plusandminusExpression
-    | expression_body op=(GT | GE | LT | LE | SAME | NOT_EQ) expression_body #relationalExpression
-    | expression_body op=(AND | OR) expression_body #logicalExpression
-    | LPAREN expression_body RPAREN #expbodyExpression
-    | NEGATION expression_body #negationExpression
-    ;
-
-
-boolean_literal
-    : TRUE
-    | FALSE
-    | identifier
-    | function_call_statement
-    | expression
-    ;
-
-
-integer_literal
-    : decimalSymbol? DecimalNumeral
-    | HexNumeral
-    | identifier
-    | function_call_statement
-    | expression
-    ;
-
-for_type
-  : TO
-  | DOWNTO
-  ;
-
-for_init
-  : INT identifier EQ expression_body
-  ;
-
-for_statement
-  : LPAREN for_init for_type integer_literal RPAREN
-  ;
-
-
-switch_block
-  : CASE DecimalNumeral COLON body
-  | BREAK SEMI
-  ;
-
-function_declaration
-  : function_header function_body
-  ;
-
-function_header
-  : function_type function_declarator
-  ;
-
-function_declarator
-  : identifier LPAREN (formal_parameter (COMMA formal_parameter)*)? RPAREN function_body
-  ;
-
-function_type
+methodReturnType
   : INT
   | BOOLEAN
   | VOID
   ;
 
-function_body
-  : LBRACE (block_body)? RBRACE
+booleanValue
+  : TRUE
+  | FALSE
   ;
 
-formal_parameter
-  : varTypes identifier
+possibleTypes
+  : INT
+  | BOOLEAN
   ;
 
-function_call_statement
-  : identifier LPAREN (argument_list (COMMA argument_list)*)? RPAREN SEMI
+decimalSymbol
+  : PLUS
+  | MINUS
   ;
 
-argument_list
-  : expression_body
+identifier
+  : WORD (WORD | DECIMAL)*
+  ;
+
+possibleValues
+  : decimalSymbol? DECIMAL
+  | booleanValue
+  ;
+
+decimalVariable
+  : INT identifier (paralelDeclaration)* EQ decimalSymbol? decimalValue
+  ;
+
+
+decimalValue
+  : decimalSymbol? DECIMAL
+  | methodCall
+  | identifier
+  | expressionBody
+  ;
+
+boolVariable
+  : BOOLEAN identifier (paralelDeclaration)* EQ boolValue
+  ;
+
+boolValue
+  : booleanValue
+  | methodCall
+  | identifier
+  | expressionBody
+  ;
+
+localVariableDeclaration
+  : (decimalVariable | boolVariable) SEMI
+  ;
+
+constVariableDeclaration
+  : CONST localVariableDeclaration
+  ;
+
+variableDeclaration
+  : (localVariableDeclaration | constVariableDeclaration)
+  ;
+
+paralelDeclaration
+  : EQ identifier
+  ;
+
+
+variableAssigment
+  : identifier EQ expressionBody SEMI
+  ;
+
+program
+  : block
+  ;
+
+block
+  : LBRACE blockStatement? RBRACE
+  ;
+
+body
+  : LBRACE blockBody? RBRACE
+  ;
+
+blockStatement
+  : (statement
+  | methodDeclaration)+
+  ;
+
+blockBody
+  : (statement)+
+  ;
+
+statement
+  : IF expression body (ELSE body)?                        #statementIf
+  | FOR forControl body                                    #statementFor
+  | WHILE expression body                                  #statementWhile
+  | DO body WHILE expression                               #statementDo
+  | SWITCH expression LBRACE switchBlockStatement* RBRACE  #statementSwitch
+  | REPEAT body UNTIL expression                           #statementRepeat
+  | methodCall SEMI                                        #statementMethodCall
+  | variableAssigment                                      #statementAssigment
+  | variableDeclaration                                    #statementVariableDeclaration
+  ;
+
+expression
+  : LPAREN expressionBody RPAREN
+  ;
+
+expressionBody
+  : possibleValues                                                          #exprPossibleValue
+  | identifier                                                              #exprIdentifier
+  | methodCall                                                              #exprMethodCall
+  | expressionBody op=(MULT | DIV | MOD) expressionBody                     #exprMultipli
+  | expressionBody op=(PLUS | MINUS) expressionBody                         #exprAdditive
+  | expressionBody op=(GT | GE | LT | LE | SAME | NOT_EQ) expressionBody    #exprRelational
+  | expressionBody op=(AND | OR) expressionBody                             #exprLogical
+  | LPAREN expressionBody RPAREN                                            #exprPar
+  | NEGATION expressionBody                                                 #exprNeg
+  | MINUS expressionBody                                                    #exprMinus
+  | PLUS expressionBody                                                     #exprPlus
+  ;
+  //TODO Maybe MethodRuns
+  //TODO Array
+  //TODO 'bop=INSTANCEOF typeType'  https://github.com/antlr/grammars-v4/blob/master/java/java/JavaParser.g4
+
+
+forControl
+  : LPAREN identifier EQ decimalSymbol? expressionBody '...' decimalSymbol? expressionBody RPAREN
+  ;
+
+switchBlockStatement
+  : CASE DECIMAL COLON body
+  | DEFAULT COLON body
+  ;
+
+methodDeclaration
+  : methodReturnType FUNCTION_KEYWORD identifier LPAREN (methodParameter (COMMA methodParameter)*)? RPAREN methodBody
+  ;
+
+methodParameter
+  : possibleTypes identifier
+  ;
+
+methodBody
+  : LBRACE blockBody? (RETURN expressionBody SEMI)? RBRACE
+  ;
+
+methodCall
+  : identifier LPAREN (methodCallParameter (COMMA methodCallParameter)*)? RPAREN
+  ;
+
+methodCallParameter
+  : expressionBody
   ;
