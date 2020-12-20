@@ -3,7 +3,7 @@ package compilator.variable;
 import java.util.ArrayList;
 import java.util.List;
 
-import compilator.Expression.Expression;
+import compilator.expressions.Expression;
 import compilator.methods.MethodRuns;
 public class Variable {
     private String name;

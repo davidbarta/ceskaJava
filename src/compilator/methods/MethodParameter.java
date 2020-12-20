@@ -1,5 +1,5 @@
 package compilator.methods;
-import compilator.Expression.Expression;
+import compilator.expressions.Expression;
 import compilator.variable.VariableTypeEnum;
 public class MethodParameter {
     private Expression expression;
@@ -25,8 +25,7 @@ public class MethodParameter {
         this.expression = expression;
     }
 
-    public void setVariableType(VariableTypeEnum variableType)
-    {
+    public void setVariableType(VariableTypeEnum variableType){
         this.variableType = variableType;
     }
 }

@@ -1,7 +1,7 @@
 package compilator.methods;
 
 import compilator.statements.BlockStatement;
-import compilator.Expression.Expression;
+import compilator.expressions.Expression;
 
 import java.util.List;
 

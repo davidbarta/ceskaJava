@@ -18,8 +18,7 @@ public class Statement {
         this.type = type;
     }
 
-    public int getLine()
-    {
+    public int getLine(){
         return line;
     }
 }

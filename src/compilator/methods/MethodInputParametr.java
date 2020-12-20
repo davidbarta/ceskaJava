@@ -1,5 +1,6 @@
 package compilator.methods;
 import compilator.variable.VariableTypeEnum;
+
 public class MethodInputParametr {
     private VariableTypeEnum type;
     private String identifier;

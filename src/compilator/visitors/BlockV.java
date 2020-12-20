@@ -9,7 +9,7 @@ public class BlockV extends CeskaJavaBaseVisitor<Block>{
 
     public Block visitBlock(CeskaJavaParser.BlockContext ctx) {
 
-        BlockStatement blockStatement = new BlockStatementVisitor().visit(ctx.blockStatement());
+        BlockStatement blockStatement = new BlockStatementV().visit(ctx.blockStatement());
 
         return new Block(blockStatement);
     }

@@ -1,4 +1,4 @@
-package compilator.Expression;
+package compilator.expressions;
 
 public enum ExpressionTypeEnum {
     IDENTIFIER,

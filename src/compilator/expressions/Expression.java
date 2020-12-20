@@ -1,4 +1,4 @@
-package compilator.Expression;
+package compilator.expressions;
 
 import compilator.variable.VariableTypeEnum;
 
