@@ -10,10 +10,10 @@ INT:'cislo' ;
 FINAL:'finalni' ;
 
 /*------IF-------*/
-IF:'kdyz' ;
+IF:'pokud' ;
 ELSE:'jinak' ;
-SWITCH:'moznosti' ;
-CASE:'moznost';
+SWITCH:'nazaklade' ;
+CASE:'jestlize';
 BREAK:'odejdi';
 
 /*------CYKLY-------*/
@@ -23,9 +23,6 @@ DO:'pro' ;
 REPEAT:'opakuj';
 UNTIL:'dokud';
 
-/*------TRIDA-------*/
-CLASS : 'trida';
-EXTENDS : 'dedi';
 RETURN: 'vrat';
 
 /*------OPERATORY-------*/
@@ -55,45 +52,6 @@ RPAREN: ')';
 LBRACE: '{';
 RBRACE: '}';
 SEMI:   ';';
-
-
-/* ------ LITERALY ------ */
-
-Letter:[a-zA-Z$_];
-
-Letter_or_digit:[a-zA-Z0-9$_];
-
-WHITESPACE:[ \t\r\n\u000C]+ -> skip;
-
-COMMENT : '/*' .*? '*/' -> skip ;
-
-LINE_COMMENT : '//' ~[\r\n]* -> skip;
-
-HexNumeral: ZERO [xX] HexDigits;
-
-fragment ZERO : '0';
-
-fragment NonZeroDigit:[1-9];
-
-DecimalNumeral:	ZERO|NonZeroDigit (Digits? | Underscores Digits);
-
-fragment Digits:Digit (DigitsAndUnderscores? Digit)?;
-
-fragment Digit:	ZERO|NonZeroDigit;
-
-fragment DigitsAndUnderscores:DigitOrUnderscore+;
-
-fragment DigitOrUnderscore:	Digit|	'_';
-
-fragment Underscores:'_'+;
-
-fragment HexDigits:HexDigit (HexDigitsAndUnderscores? HexDigit)?;
-
-fragment HexDigit:[0-9a-fA-F];
-
-fragment HexDigitsAndUnderscores:HexDigitOrUnderscore+;
-
-fragment HexDigitOrUnderscore:HexDigit|'_';
 
 methodReturnType
   : INT
@@ -148,47 +106,25 @@ boolValue
   | expressionBody
   ;
 
-localVariableDeclaration
-  : (decimalVariable | boolVariable) SEMI
-  ;
+localVariableDeclaration : (decimalVariable | boolVariable) SEMI ;
 
-constVariableDeclaration
-  : CONST localVariableDeclaration
-  ;
+constVariableDeclaration : CONST localVariableDeclaration;
 
-variableDeclaration
-  : (localVariableDeclaration | constVariableDeclaration)
-  ;
+variableDeclaration : (localVariableDeclaration | constVariableDeclaration) ;
 
-paralelDeclaration
-  : EQ identifier
-  ;
+paralelDeclaration : EQ identifier ;
 
+variableAssigment : identifier EQ expressionBody SEMI  ;
 
-variableAssigment
-  : identifier EQ expressionBody SEMI
-  ;
+program : block ;
 
-program
-  : block
-  ;
+block : LBRACE blockStatement? RBRACE ;
 
-block
-  : LBRACE blockStatement? RBRACE
-  ;
+body : LBRACE blockBody? RBRACE ;
 
-body
-  : LBRACE blockBody? RBRACE
-  ;
+blockStatement : (statement | methodDeclaration)+ ;
 
-blockStatement
-  : (statement
-  | methodDeclaration)+
-  ;
-
-blockBody
-  : (statement)+
-  ;
+blockBody : (statement)+ ;
 
 statement
   : IF expression body (ELSE body)?                        #statementIf
@@ -202,9 +138,7 @@ statement
   | variableDeclaration                                    #statementVariableDeclaration
   ;
 
-expression
-  : LPAREN expressionBody RPAREN
-  ;
+expression : LPAREN expressionBody RPAREN ;
 
 expressionBody
   : possibleValues                                                          #exprPossibleValue
@@ -223,32 +157,56 @@ expressionBody
   //TODO Array
   //TODO 'bop=INSTANCEOF typeType'  https://github.com/antlr/grammars-v4/blob/master/java/java/JavaParser.g4
 
+forControl : LPAREN identifier EQ decimalSymbol? expressionBody '...' decimalSymbol? expressionBody RPAREN ;
 
-forControl
-  : LPAREN identifier EQ decimalSymbol? expressionBody '...' decimalSymbol? expressionBody RPAREN
-  ;
+switchBlockStatement : CASE DECIMAL COLON body | DEFAULT COLON body ;
 
-switchBlockStatement
-  : CASE DECIMAL COLON body
-  | DEFAULT COLON body
-  ;
+methodDeclaration : methodReturnType FUNCTION_KEYWORD identifier LPAREN (methodParameter (COMMA methodParameter)*)? RPAREN methodBody ;
 
-methodDeclaration
-  : methodReturnType FUNCTION_KEYWORD identifier LPAREN (methodParameter (COMMA methodParameter)*)? RPAREN methodBody
-  ;
+methodParameter : possibleTypes identifier ;
 
-methodParameter
-  : possibleTypes identifier
-  ;
+methodBody : LBRACE blockBody? (RETURN expressionBody SEMI)? RBRACE ;
 
-methodBody
-  : LBRACE blockBody? (RETURN expressionBody SEMI)? RBRACE
-  ;
+methodCall : identifier LPAREN (methodCallParameter (COMMA methodCallParameter)*)? RPAREN ;
 
-methodCall
-  : identifier LPAREN (methodCallParameter (COMMA methodCallParameter)*)? RPAREN
-  ;
+methodCallParameter : expressionBody ;
 
-methodCallParameter
-  : expressionBody
-  ;
+/* ------ LITERALY ------ */
+
+Letter:[a-zA-Z$_];
+
+Letter_or_digit:[a-zA-Z0-9$_];
+
+WHITESPACE:[ \t\r\n\u000C]+ -> skip;
+
+COMMENT : '/*' .*? '*/' -> skip ;
+
+LINE_COMMENT : '//' ~[\r\n]* -> skip;
+
+HexNumeral: ZERO [xX] HexDigits;
+
+/* ------ FRAGMENTS ------ */
+
+fragment ZERO : '0';
+
+fragment NonZeroDigit:[1-9];
+
+DecimalNumeral:	ZERO|NonZeroDigit (Digits? | Underscores Digits);
+
+fragment Digits:Digit (DigitsAndUnderscores? Digit)?;
+
+fragment Digit:	ZERO|NonZeroDigit;
+
+fragment DigitsAndUnderscores:DigitOrUnderscore+;
+
+fragment DigitOrUnderscore:	Digit|	'_';
+
+fragment Underscores:'_'+;
+
+fragment HexDigits:HexDigit (HexDigitsAndUnderscores? HexDigit)?;
+
+fragment HexDigit:[0-9a-fA-F];
+
+fragment HexDigitsAndUnderscores:HexDigitOrUnderscore+;
+
+fragment HexDigitOrUnderscore:HexDigit|'_';

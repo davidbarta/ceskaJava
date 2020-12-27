@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class BlockStatementV extends CeskaJavaBaseVisitor {
+public class BlockStatementV extends CeskaJavaBaseVisitor<BlockStatement> {
     public BlockStatement visitBlockStatement(CeskaJavaParser.BlockStatementContext bsc){
         List<Statement> statements = this.getAllStatements(bsc.statement());
         List<Method> methods = this.getAllMethods(bsc.methodDeclaration());

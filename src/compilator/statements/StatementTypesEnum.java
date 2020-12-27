@@ -7,6 +7,7 @@ public enum StatementTypesEnum {
     WHILE,
     REPEAT_UNTIL,
     SWITCH,
+    SWITCH_BLOCK,
     ASSIGMENT,
     METHOD_CALL,
     DECLARATION

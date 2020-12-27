@@ -6,59 +6,44 @@ import compilator.statements.BlockStatement;
 import compilator.expressions.Expression;
 
 
+import compilator.variable.VariableTypeEnum;
 import main.antlr4.CeskaJavaBaseVisitor;
 import main.antlr4.CeskaJavaParser;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MethodDeclarationV extends CeskaJavaBaseVisitor{
+public class MethodDeclarationV extends CeskaJavaBaseVisitor<Method>{
     private final String METHOD_SYMBOL = "()";
 
     @Override
     public Method visitMethodDeclaration(CeskaJavaParser.MethodDeclarationContext ctx)
     {
         MethodReturnTypeEnum returnType = MethodReturnTypeEnum.valueOf(ctx.methodReturnType().getText().toUpperCase());
-
         String identifier = ctx.identifier().getText() + this.METHOD_SYMBOL;
-
         List<MethodInputParametr> parameters = this.parseMethodParameters(ctx.methodParameter());
-
         BlockStatement body = ctx.methodBody().blockBody() != null ? new BlockBodyV().visit(ctx.methodBody().blockBody()) : null;
-
         Expression returnValue =  null;
-
         if (ctx.methodBody().expressionBody() != null)
         {
-            returnValue = new ExpressionBodyVisitor().visit(ctx.methodBody().expressionBody());
-            returnValue.setExpectedReturnType(returnType == EMethodReturnType.INT ? EVariableType.INT : EVariableType.BOOLEAN);
+            returnValue = new ExpressionBodyV().visit(ctx.methodBody().expressionBody());
+            returnValue.setExpectedReturnType(returnType == MethodReturnTypeEnum.INT ? VariableTypeEnum.INT : VariableTypeEnum.BOOLEAN);
         }
-
         return new Method(returnType, identifier, parameters, body, returnValue, ctx.start.getLine());
     }
 
-    /**
-     * Processes method parameters
-     * @param methodParameterContext list of parameters context
-     * @return
-     */
     private List<MethodInputParametr> parseMethodParameters(List<CeskaJavaParser.MethodParameterContext> methodParameterContext)
     {
-        List<MethodDeclarationParameter> methodDeclarationParameters = new ArrayList<>();
-        MethodDeclarationParameter methodDeclarationParameter;
-
-        for (SimpleJavaParser.MethodParameterContext method : methodParameterContext)
+        List<MethodInputParametr> methodInputParametrs = new ArrayList<>();
+        MethodInputParametr methodInputParametr;
+        for (CeskaJavaParser.MethodParameterContext method : methodParameterContext)
         {
-            EVariableType type = EVariableType.valueOf(method.possibleTypes().getText().toUpperCase());
-
+            VariableTypeEnum type = VariableTypeEnum.valueOf(method.possibleTypes().getText().toUpperCase());
             String identifier = method.identifier().getText();
-
-            methodDeclarationParameter = new MethodDeclarationParameter(type,identifier);
-
-            methodDeclarationParameters.add(methodDeclarationParameter);
+            methodInputParametr = new MethodInputParametr(type,identifier);
+            methodInputParametrs.add(methodInputParametr);
         }
-
-        return methodDeclarationParameters;
+        return methodInputParametrs;
     }
 
 }

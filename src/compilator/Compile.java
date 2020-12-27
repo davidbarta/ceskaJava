@@ -1,5 +1,8 @@
 package compilator;
 
+import compilator.instructions.Instruction;
+import compilator.instructions.InstructionGenerator;
+import compilator.visitors.ProgramV;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -42,7 +45,7 @@ public class Compile
         try
         {
             // processes tree into internal structure
-            program = new ProgramVisitor().visit(parseTree);
+            program = new ProgramV().visit(parseTree);
         }
         catch (Exception e)
         {
@@ -61,7 +64,6 @@ public class Compile
         catch (Exception e)
         {
             System.out.println("Something goes wrong while generating instructions. " + e.toString());
-            System.exit(EErrorCode.ERROR_UNKNOWN.getCode());
         }
     }
 
