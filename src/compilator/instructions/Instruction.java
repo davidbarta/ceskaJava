@@ -51,6 +51,10 @@ public class Instruction {
         return updateMetdodRuns;
     }
 
+    public void setAddress(int address) {
+        this.address = address;
+    }
+
     public void setUpdateMetdodRuns(boolean updateMetdodRuns) {
         this.updateMetdodRuns = updateMetdodRuns;
     }

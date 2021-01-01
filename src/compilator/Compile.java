@@ -8,7 +8,6 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import main.antlr4.CeskaJavaParser;
 import main.antlr4.CeskaJavaLexer;
-import java.io.File;
 import java.io.PrintWriter;
 import java.util.List;
 
@@ -16,7 +15,7 @@ public class Compile
 {
     private static final Compile instance = new Compile();
 
-    private Compile(){};
+    private Compile(){}
 
     public static Compile getInstance()
     {
@@ -56,7 +55,7 @@ public class Compile
         {
             // processes internal structure into instructions
             InstructionGenerator instructionGenerator = new InstructionGenerator(program);
-            List<Instruction> instructions = instructionGenerator.generateInstructions();
+            List<Instruction> instructions = instructionGenerator.getInstructions();
 
             // write instructions into file
             this.writeInstructions(output, instructions);
@@ -74,7 +73,7 @@ public class Compile
      */
     private void writeInstructions(String outputFile, List<Instruction> instructions)
     {
-        PrintWriter writer = null;
+        PrintWriter writer;
         try
         {
             writer = new PrintWriter(outputFile, "UTF-8");
