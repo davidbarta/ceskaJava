@@ -41,4 +41,14 @@ public class MethodPrototype {
     public void setVariable(VariableTypeEnum variable) {
         this.variable = variable;
     }
+    public VariableTypeEnum convertType(){
+        if(returnType == MethodReturnTypeEnum.INT){
+            return VariableTypeEnum.INT;
+        } else if(returnType == MethodReturnTypeEnum.BOOLEAN) {
+            return VariableTypeEnum.BOOLEAN;
+        }
+        else {
+            return null;
+        }
+    }
 }

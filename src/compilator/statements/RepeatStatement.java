@@ -16,7 +16,7 @@ public class RepeatStatement extends Statement{
         return expression;
     }
 
-    public BlockStatement getBlockStatement() {
+    public BlockStatement getBody() {
         return blockStatement;
     }
 }
