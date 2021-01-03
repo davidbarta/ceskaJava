@@ -4,7 +4,6 @@ import compilator.instructions.Instruction;
 import compilator.instructions.InstructionTypeEnum;
 import compilator.methods.Method;
 import compilator.methods.MethodInputParametr;
-import compilator.methods.MethodParameter;
 
 import java.util.List;
 
@@ -37,7 +36,6 @@ public class MethodCompilator extends Compilator{
         blockBody.delLocalVariablesMethod();
         deleteTableParrams();
         addInstruction(new Instruction(InstructionTypeEnum.RET,getInstructionCountter(),0,0));
-        //TODO Kamču && method constructor
     }
 
     private void deleteTableParrams() {

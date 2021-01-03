@@ -22,16 +22,8 @@ public class MethodPrototype {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public MethodReturnTypeEnum getReturnType() {
         return returnType;
-    }
-
-    public void setReturnType(MethodReturnTypeEnum returnType) {
-        this.returnType = returnType;
     }
 
     public VariableTypeEnum getVariable() {

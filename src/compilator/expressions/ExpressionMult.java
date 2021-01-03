@@ -22,9 +22,6 @@ public class ExpressionMult extends Expression {
         return right;
     }
 
-    public String getOperator() {
-        return operator;
-    }
     public int getOperatorNum() {
         int toReturn = InstructionOperationEnum.UNKNOWN.getCode();
 

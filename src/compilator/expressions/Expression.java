@@ -13,29 +13,24 @@ public class Expression {
         this.line = line;
     }
 
-    public ExpressionTypeEnum getType()
-    {
+    public ExpressionTypeEnum getType(){
         return type;
     }
 
-    public void setType(ExpressionTypeEnum type)
-    {
+    public void setType(ExpressionTypeEnum type){
         this.type = type;
     }
 
 
-    public VariableTypeEnum getExpectedReturnType()
-    {
+    public VariableTypeEnum getExpectedReturnType() {
         return expectedReturnType;
     }
 
-    public void setExpectedReturnType(VariableTypeEnum expectedReturnType)
-    {
+    public void setExpectedReturnType(VariableTypeEnum expectedReturnType) {
         this.expectedReturnType = expectedReturnType;
     }
 
-    public int getLine()
-    {
+    public int getLine() {
         return line;
     }
 }

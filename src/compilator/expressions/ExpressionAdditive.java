@@ -21,11 +21,6 @@ public class ExpressionAdditive extends Expression {
     public Expression getRightExpression() {
         return rightExpression;
     }
-
-    public String getOperator() {
-        return operator;
-    }
-
     public int getOperatorNum(){
         if(operator.equals("+")){
             return InstructionOperationEnum.PLUS.getCode();

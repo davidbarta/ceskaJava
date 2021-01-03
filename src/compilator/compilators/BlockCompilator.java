@@ -23,7 +23,6 @@ public class BlockCompilator extends Compilator {
                 this.getMethodPrototypes().put(mp.getName(), mp);
             }
         }
-
         new BlockStatementCompilator(this.block.getBlockStatement(),0).run();
     }
 }

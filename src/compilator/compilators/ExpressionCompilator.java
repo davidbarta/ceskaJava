@@ -6,7 +6,6 @@ import compilator.instructions.InstructionOperationEnum;
 import compilator.instructions.InstructionTypeEnum;
 import compilator.methods.MethodReturnTypeEnum;
 import compilator.variable.Value;
-import compilator.variable.Variable;
 import compilator.variable.VariableTypeEnum;
 
 public class ExpressionCompilator extends Compilator{
@@ -44,6 +43,7 @@ public class ExpressionCompilator extends Compilator{
 
     private VariableTypeEnum processExpression(Expression expression) {
         VariableTypeEnum returnTypre = null;
+        System.out.println("Expression: " + expression.getType().toString());
         switch (expression.getType()){
             case IDENTIFIER:
                 returnTypre = genIdentifierInstructions((ExpressionIdentifier) expression);
@@ -159,7 +159,7 @@ public class ExpressionCompilator extends Compilator{
     private VariableTypeEnum genLogicalInstructions(ExpressionLogical expression) {
         VariableTypeEnum leftE = processExpression(expression.getLeft());
         VariableTypeEnum rightE = processExpression(expression.getRight());
-        int res = checkVarTypes(leftE,rightE,VariableTypeEnum.INT);
+        int res = checkVarTypes(leftE,rightE);
         if(res == 0){
             System.out.println("Error generate logical instructions: " + expression.getLine());
             return  null;
@@ -180,7 +180,7 @@ public class ExpressionCompilator extends Compilator{
     private VariableTypeEnum genReationalInstructions(ExpressionRelational expression) {
         VariableTypeEnum leftE = processExpression(expression.getLeft());
         VariableTypeEnum rightE = processExpression(expression.getRight());
-        int res = checkVarTypes(leftE,rightE,VariableTypeEnum.INT);
+        int res = checkVarTypes(leftE,rightE);
         if(res == 0){
             System.out.println("Error generate relational instructions: " + expression.getLine());
             return  null;
@@ -192,7 +192,7 @@ public class ExpressionCompilator extends Compilator{
     private VariableTypeEnum genAdditiveInstructions(ExpressionAdditive expression) {
         VariableTypeEnum leftE = processExpression(expression.getLeftExpression());
         VariableTypeEnum rightE = processExpression(expression.getRightExpression());
-        int res = checkVarTypes(leftE,rightE,VariableTypeEnum.INT);
+        int res = checkVarTypes(leftE,rightE);
         if(res == 0){
             System.out.println("Error generate additive instructions: " + expression.getLine());
             return  null;
@@ -204,7 +204,7 @@ public class ExpressionCompilator extends Compilator{
     private VariableTypeEnum genMultiplicationInstructions(ExpressionMult expression) {
         VariableTypeEnum leftE = processExpression(expression.getLeft());
         VariableTypeEnum rightE = processExpression(expression.getRight());
-        int res = checkVarTypes(leftE,rightE,VariableTypeEnum.INT);
+        int res = checkVarTypes(leftE,rightE);
         if(res == 0){
             System.out.println("Error generate Multiplication instructions: " + expression.getLine());
             return  null;
@@ -213,8 +213,8 @@ public class ExpressionCompilator extends Compilator{
         return VariableTypeEnum.INT;
     }
 
-    private int checkVarTypes(VariableTypeEnum leftE, VariableTypeEnum rightE, VariableTypeEnum anInt) {
-        if(leftE != anInt || rightE != anInt){
+    private int checkVarTypes(VariableTypeEnum leftE, VariableTypeEnum rightE) {
+        if(leftE != VariableTypeEnum.INT || rightE != VariableTypeEnum.INT){
             System.out.println("Error during check variables");
             return 0;
         }
@@ -256,22 +256,6 @@ public class ExpressionCompilator extends Compilator{
 
     public void setExpression(Expression expression) {
         this.expression = expression;
-    }
-
-    public VariableTypeEnum getVarTypeEnum() {
-        return varTypeEnum;
-    }
-
-    public void setVarTypeEnum(VariableTypeEnum varTypeEnum) {
-        this.varTypeEnum = varTypeEnum;
-    }
-
-    public int getLvl() {
-        return lvl;
-    }
-
-    public void setLvl(int lvl) {
-        this.lvl = lvl;
     }
 
     public MethodReturnTypeEnum getMethodReturnType() {

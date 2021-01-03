@@ -1,9 +1,5 @@
 package compilator.statements;
 
-
-import compilator.statements.Statement;
-import compilator.statements.StatementTypesEnum;
-import compilator.statements.StatementDeclare;
 import compilator.variable.Variable;
 
 import java.util.ArrayList;

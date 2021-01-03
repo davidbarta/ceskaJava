@@ -15,7 +15,6 @@ public class ProgramCompilator extends Compilator{
     private void run() {
         Instruction startInstruction = new Instruction(InstructionTypeEnum.JMP, getInstructionCountter(),0,1);
         this.addInstruction(startInstruction);
-
         new BlockCompilator(program.getBlock()).run();
     }
 }

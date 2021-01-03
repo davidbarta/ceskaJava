@@ -9,7 +9,6 @@ import java.util.List;
 public class TableItem {
     private VariableTypeEnum type = null;
     private boolean isMethod = false;
-    private String methodName = null;
     private MethodReturnTypeEnum methodReturnType = null;
     private List<MethodInputParametr> methodInputParametrList = null;
     private String name;
@@ -34,16 +33,9 @@ public class TableItem {
         return isMethod;
     }
 
-    public String getMethodName() {
-        return methodName;
-    }
 
     public MethodReturnTypeEnum getMethodReturnType() {
         return methodReturnType;
-    }
-
-    public List<MethodInputParametr> getMethodInputParametrList() {
-        return methodInputParametrList;
     }
 
     public String getName() {
@@ -56,10 +48,6 @@ public class TableItem {
 
     public int getAddress() {
         return address;
-    }
-
-    public int getSize() {
-        return size;
     }
 
     public boolean isVariable() {
@@ -78,32 +66,12 @@ public class TableItem {
         isMethod = method;
     }
 
-    public void setMethodName(String methodName) {
-        this.methodName = methodName;
-    }
-
     public void setMethodReturnType(MethodReturnTypeEnum methodReturnType) {
         this.methodReturnType = methodReturnType;
     }
 
     public void setMethodInputParametrList(List<MethodInputParametr> methodInputParametrList) {
         this.methodInputParametrList = methodInputParametrList;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setLvl(int lvl) {
-        this.lvl = lvl;
-    }
-
-    public void setAddress(int address) {
-        this.address = address;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
     }
 
     public void setVariable(boolean variable) {

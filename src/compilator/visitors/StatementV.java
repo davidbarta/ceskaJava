@@ -18,7 +18,7 @@ public class StatementV extends CeskaJavaBaseVisitor<Statement> {
     public Statement visitStatementVariableDeclaration(CeskaJavaParser.StatementVariableDeclarationContext ctx) {
         Variable variable = new VariableV().visit(ctx.variableDeclaration());
         variable.setLine(ctx.start.getLine());
-        DeclareStatement ds = new DeclareStatement(variable,ctx.start.getLine());
+        StatementDeclare ds = new  StatementDeclare(variable,ctx.start.getLine());
         return ds;
     }
 

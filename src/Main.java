@@ -4,17 +4,17 @@ import org.antlr.v4.runtime.CharStreams;
 
 public class Main {
     public static void main(String[] args) {
-        String input = args[0];
-        String output = args[1];
+        String path = args[0];
+        String file = args[1];
 
         CharStream inputStream = null;
         try {
-            inputStream = CharStreams.fromFileName(input);
+            inputStream = CharStreams.fromFileName(path);
 
         } catch (Exception e) {
-            System.out.println("File not found " + input);
+            System.out.println("File not found " + (path));
         }
-        Compile.getInstance().run(inputStream, output);
+        Compile.getInstance().run(inputStream,path, file);
     }
 
 }

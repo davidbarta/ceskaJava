@@ -13,8 +13,7 @@ public enum InstructionTypeEnum {
 
     private String value;
 
-    InstructionTypeEnum(String value)
-    {
+    InstructionTypeEnum(String value) {
         this.value = value;
     }
 

@@ -39,32 +39,12 @@ public class Instruction {
         return methodRuns;
     }
 
-    public int getAddress() {
-        return address;
-    }
-
     public boolean isLaterInit() {
         return laterInit;
     }
 
-    public boolean isUpdateMetdodRuns() {
-        return updateMetdodRuns;
-    }
-
     public void setAddress(int address) {
         this.address = address;
-    }
-
-    public void setUpdateMetdodRuns(boolean updateMetdodRuns) {
-        this.updateMetdodRuns = updateMetdodRuns;
-    }
-
-    public int getLvl() {
-        return lvl;
-    }
-
-    public int getRow() {
-        return row;
     }
 
     public InstructionTypeEnum getType() {

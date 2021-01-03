@@ -1,6 +1,5 @@
 package compilator.compilators;
 
-import compilator.expressions.Expression;
 import compilator.expressions.ExpressionMethodCall;
 import compilator.expressions.ExpressionTypeEnum;
 import compilator.instructions.Instruction;
@@ -19,7 +18,7 @@ import java.util.Map;
 public class BlockStatementCompilator extends Compilator{
     private BlockStatement blockStatement;
     private StatementData statementData;
-    private int lvl;
+    private final int lvl;
     private boolean generateMethods = true;
     private boolean increaseStack = true;
     private boolean genReturnVar = true;
@@ -64,6 +63,7 @@ public class BlockStatementCompilator extends Compilator{
             }
             if(createLocalSpaceForVar && statementData.getVariableDeclarationCount() != 0){
                 Instruction i = new Instruction(InstructionTypeEnum.INT,getInstructionCountter(),0,-statementData.getVariableDeclarationCount());
+                addInstruction(i);
             }
         }
     }
@@ -84,18 +84,15 @@ public class BlockStatementCompilator extends Compilator{
 
                 }
             }
-
-
         }
-        //System.out.println("vulmihoukolen ");
-        //TODO Kamča
     }
 
     private void generateStatementInstructionsMethod() {
         for(Statement statement:statementData.getStatements()){
+            System.out.println("Statement:: " +statement.getType().toString());
             switch (statement.getType()){
                 case DECLARATION:
-                    generateDecInstructions((DeclareStatement)statement);
+                    generateDecInstructions((StatementDeclare)statement);
                     break;
                 case ASSIGMENT:
                     generateAssigmentInstruction((AssigmentStatement) statement);
@@ -120,6 +117,9 @@ public class BlockStatementCompilator extends Compilator{
                     break;
                 case SWITCH:
                     genSwitch((SwitchStatement) statement);
+                    break;
+                default:
+                    System.out.println("Not foud");
             }
         }
     }
@@ -237,7 +237,6 @@ public class BlockStatementCompilator extends Compilator{
         i = new Instruction(InstructionTypeEnum.JMP,getInstructionCountter(),0,startIndex);
         addInstruction(i);
         getInstructions().get(endIdx).setAddress(getInstructionCountter());
-                //TODO Kamča at 11:21
     }
 
     private void genIfInstructions(IfStatement statement) {
@@ -297,7 +296,6 @@ public class BlockStatementCompilator extends Compilator{
     }
 
     private void varIntInstructions(Variable var){
-
         switch(var.getVariableDeclaration()){
             case DECIMAL:
                 Instruction i = new Instruction(InstructionTypeEnum.LIT, getInstructionCountter(),0,var.getValue().toInt());
@@ -313,7 +311,9 @@ public class BlockStatementCompilator extends Compilator{
                 new ExpressionCompilator(var.getExpression(), VariableTypeEnum.INT,lvl).run();
                 break;
             default:
-                System.out.println("Error with variable" + var.getName() + "at line" + var.getLine());
+                System.out.println("Error with int variable " + var.getName() + " at line" + var.getLine());
+
+
         }
     }
 
@@ -331,7 +331,7 @@ public class BlockStatementCompilator extends Compilator{
         addInstruction(i);
     }
 
-    private void generateDecInstructions(DeclareStatement statement) {
+    private void generateDecInstructions(StatementDeclare statement) {
         Variable var = statement.getVariable();
         if(isInSymbolTable(var.getName())){
             System.out.println("Variable exists" + var.getName() +"+"+var.getLine());
@@ -340,8 +340,10 @@ public class BlockStatementCompilator extends Compilator{
             switch (var.getType()) {
                 case INT:
                     varIntInstructions(var);
+                    break;
                 case BOOLEAN:
                     varBoolInstructions(var);
+                    break;
             }
             TableItem tableItem  = addVariabletoItem(var);
 
@@ -371,11 +373,11 @@ public class BlockStatementCompilator extends Compilator{
                 new ExpressionCompilator(var.getExpression(), VariableTypeEnum.INT,lvl).run();
                 break;
             default:
-                System.out.println("Error with variable" + var.getName() + "at line" + var.getLine());
+                System.out.println("Error with bool variable " + var.getName() + " at line" + var.getLine());
         }
     }
 
-    private TableItem addParralelVariabletoItem(String name, Variable var) {
+    private void addParralelVariabletoItem(String name, Variable var) {
         TableItem tableItem = new TableItem(name, lvl,getAndIncreasePointer(),0);
         tableItem.setVariable(true);
         tableItem.setConstant(var.isConstant());
@@ -391,7 +393,6 @@ public class BlockStatementCompilator extends Compilator{
         }
         i = new Instruction(InstructionTypeEnum.STO,getInstructionCountter(),0,tableItem.getAddress());
         addInstruction(i);
-        return tableItem;
     }
 
     private TableItem addVariabletoItem(Variable var) {
@@ -420,6 +421,7 @@ public class BlockStatementCompilator extends Compilator{
         }
         if(createLocalSpaceForVar && statementData.getVariableDeclarationCount() !=0){
             Instruction i = new Instruction(InstructionTypeEnum.INT,getInstructionCountter(), 0,statementData.getVariableDeclarationCount());
+            addInstruction(i);
         }
     }
 
@@ -431,56 +433,20 @@ public class BlockStatementCompilator extends Compilator{
         this.blockStatement = blockStatement;
     }
 
-    public StatementData getStatementData() {
-        return statementData;
-    }
-
-    public void setStatementData(StatementData statementData) {
-        this.statementData = statementData;
-    }
-
-    public int getLvl() {
-        return lvl;
-    }
-
-    public void setLvl(int lvl) {
-        this.lvl = lvl;
-    }
-
-    public boolean isGenerateMethods() {
-        return generateMethods;
-    }
-
     public void setGenerateMethods(boolean generateMethods) {
         this.generateMethods = generateMethods;
-    }
-
-    public boolean isIncreaseStack() {
-        return increaseStack;
     }
 
     public void setIncreaseStack(boolean increaseStack) {
         this.increaseStack = increaseStack;
     }
 
-    public boolean isGenReturnVar() {
-        return genReturnVar;
-    }
-
     public void setGenReturnVar(boolean genReturnVar) {
         this.genReturnVar = genReturnVar;
     }
 
-    public boolean isDelLocalVariables() {
-        return delLocalVariables;
-    }
-
     public void setDelLocalVariables(boolean delLocalVariables) {
         this.delLocalVariables = delLocalVariables;
-    }
-
-    public boolean isCreateLocalSpaceForVar() {
-        return createLocalSpaceForVar;
     }
 
     public void setCreateLocalSpaceForVar(boolean createLocalSpaceForVar) {

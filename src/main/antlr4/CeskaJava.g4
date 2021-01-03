@@ -24,7 +24,10 @@ REPEAT:'opakuj';
 UNTIL:'dokud';
 
 RETURN: 'vrat';
-
+DEFAULT : 'default' ;
+VOID  : 'void' ;
+CONST : 'constanta' ;
+FUNCTION_KEYWORD : 'funkce' ;
 /*------OPERATORY-------*/
 OR:         '||' ;
 AND:        '&&' ;
@@ -32,8 +35,9 @@ SAME:       '==' ;
 NOT_EQ :    '!=' ;
 LT:         '<' ;
 GT:         '>' ;
-LE:         '<=' ;
-GE:         '>=' ;
+LE:         '<=';
+MOD:        '%' ;
+GE:         '>=';
 PLUS:       '+' ;
 MINUS:      '-' ;
 MULT:       '*' ;
@@ -52,6 +56,17 @@ RPAREN: ')';
 LBRACE: '{';
 RBRACE: '}';
 SEMI:   ';';
+COMMA:  ',';
+
+fragment DIGIT : [0-9]+ ;
+
+fragment LOWECASE : [a-z] ;
+
+fragment UPPERCASE : [A-Z] ;
+
+WORD  : (LOWECASE | UPPERCASE | '_')+ ;
+
+DECIMAL : DIGIT;
 
 methodReturnType
   : INT
@@ -153,9 +168,6 @@ expressionBody
   | MINUS expressionBody                                                    #exprMinus
   | PLUS expressionBody                                                     #exprPlus
   ;
-  //TODO Maybe MethodRuns
-  //TODO Array
-  //TODO 'bop=INSTANCEOF typeType'  https://github.com/antlr/grammars-v4/blob/master/java/java/JavaParser.g4
 
 forControl : LPAREN identifier EQ decimalSymbol? expressionBody '...' decimalSymbol? expressionBody RPAREN ;
 

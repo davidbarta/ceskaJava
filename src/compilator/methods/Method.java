@@ -23,28 +23,23 @@ public class Method {
         this.line = line;
     }
 
-    public String getIdentifier()
-    {
+    public String getIdentifier() {
         return identifier;
     }
 
-    public MethodReturnTypeEnum getReturnType()
-    {
+    public MethodReturnTypeEnum getReturnType() {
         return returnType;
     }
 
-    public List<MethodInputParametr> getParameters()
-    {
+    public List<MethodInputParametr> getParameters() {
         return parameters;
     }
 
-    public BlockStatement getBody()
-    {
+    public BlockStatement getBody() {
         return body;
     }
 
-    public Expression getReturnValue()
-    {
+    public Expression getReturnValue() {
         return returnValue;
     }
 

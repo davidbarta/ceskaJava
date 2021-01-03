@@ -23,10 +23,6 @@ public class Compilator {
         return instructionCountter;
     }
 
-    public static int getStackPointer() {
-        return stackPointer;
-    }
-
     public void increaceStackPointer(){
         stackPointer++;
     }
@@ -40,17 +36,12 @@ public class Compilator {
         increaceStackPointer();
         return toReturn;
     }
-
     public static ArrayList<Instruction> getInstructions() {
         return instructions;
     }
 
     public static HashMap<String, TableItem> getSymbolTable() {
         return symbolTable;
-    }
-
-    public void addToSymbolTable(TableItem tableItem){
-        symbolTable.put(tableItem.getName(), tableItem);
     }
 
     public TableItem getTableItem(String name){
