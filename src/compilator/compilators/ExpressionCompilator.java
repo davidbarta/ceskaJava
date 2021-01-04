@@ -120,7 +120,7 @@ public class ExpressionCompilator extends Compilator{
             System.out.println("Error with method runs expression at line: " + expression.getLine());
             return null;
         }
-        if(getMethodPrototypes().containsKey(expression.getMethodRuns().getIdentifier())){
+        if(!getMethodPrototypes().containsKey(expression.getMethodRuns().getIdentifier())){
             System.out.println("Method not exists: " + expression.getLine());
             return null;
         }

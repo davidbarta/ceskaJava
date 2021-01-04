@@ -32,7 +32,7 @@ public class Instruction {
 
     @Override
     public String toString(){
-        return this.type +"\t" + this.lvl + "\t" + this.address +"\n";
+        return this.row +"\t"+this.type +"\t" + this.lvl + "\t" + this.address +"\n";
     }
 
     public MethodRuns getMethodRuns() {

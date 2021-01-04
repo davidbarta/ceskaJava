@@ -1,0 +1,23 @@
+{
+	cislo a = 10;
+	cislo b = 30;
+	cislo c = 0;
+	nazaklade (a){
+		jestlize 5:{
+			c = a+b;
+		}
+		jestlize 5:{
+			c = a+b;
+		}
+		jestlize 10:{
+			c = a-b;
+		}
+		jestlize 15:{
+			c = a+b+b;
+		}
+		default :{
+			c = 1;
+		}
+	
+	}
+}

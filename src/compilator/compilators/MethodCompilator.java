@@ -50,7 +50,7 @@ public class MethodCompilator extends Compilator{
         TableItem tableItem;
         for(int i =0; i < parametrs.size();i++){
             if(isInSymbolTable(parametrs.get(i).getIdentifier())){
-                System.out.println("Error with method parrameters " + parametrs.get(i).getIdentifier());
+                System.out.println("Error with method parrameters: " + parametrs.get(i).getIdentifier());
             }
             addInstruction(new Instruction(InstructionTypeEnum.STO,getInstructionCountter(),0,i-parametrs.size()));
             tableItem = new TableItem(parametrs.get(i).getIdentifier(), 1,getAndIncreasePointer(),0);

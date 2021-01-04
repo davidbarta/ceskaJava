@@ -1,0 +1,37 @@
+{
+	cislo fact = 1;
+	cislo size = 10;
+	tocpro(i = 1 ... size){
+		fact = fact *i;
+	}
+	
+	cislo r = rekurze(size);
+	
+	vratTrue();
+	test();
+	
+	
+	// funkce na rekurzi
+	cislo funkce rekurze(cislo s){
+		cislo c = 0;
+		pokud(s < 5){
+			c = 5;
+		}
+		jinak{
+			c = rekurze(s-1);
+		}
+		vrat c;
+	}
+	vratTrue();
+	test();
+	
+	pravdivost funkce vratTrue(){
+		pravdivost p = pravda;
+		vrat p;
+	}
+	
+	funkce test(){
+		cislo beta = 2048;
+	}
+	
+}
