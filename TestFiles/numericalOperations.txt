@@ -1,0 +1,7 @@
+{
+cislo a = 10;
+cislo b = -5;
+cislo c = a%b;
+cislo d = a-(b+2) * c;
+c = a/b;
+}

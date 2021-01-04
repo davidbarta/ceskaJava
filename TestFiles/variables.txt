@@ -1,0 +1,8 @@
+{
+konstanta pravdivost a = b = pravda;
+konstanta pravdivost c = d = lez;
+cislo g = 19;
+konstanta cislo j = -7;
+pravdivost p = pravda;
+cislo q = g-5;
+}

@@ -18,17 +18,29 @@ public class VariableV extends CeskaJavaBaseVisitor<Variable> {
     @Override
     public Variable visitVariableDeclaration(CeskaJavaParser.VariableDeclarationContext ctx) {
         Variable var = null;
+        if(ctx.constVariableDeclaration() != null){
+            //System.out.println("Konstanta");
+            if (ctx.constVariableDeclaration().localVariableDeclaration().decimalVariable() != null) {
+                //System.out.println("decimal");
+                var = createDecimalVariable(ctx.constVariableDeclaration().localVariableDeclaration().decimalVariable());
 
-        if(ctx.localVariableDeclaration().decimalVariable() != null){
-            var = createDecimalVariable(ctx.localVariableDeclaration().decimalVariable());
-
+            } else if (ctx.constVariableDeclaration().localVariableDeclaration().boolVariable() != null) {
+                //System.out.println("Bool");
+                var = createBoolVariable(ctx.constVariableDeclaration().localVariableDeclaration().boolVariable());
+            }
+            if (var != null) {
+                var.setConstant(true);
+            }
         }
-        else if(ctx.localVariableDeclaration().boolVariable() != null){
-            var = createBoolVariable(ctx.localVariableDeclaration().boolVariable());
-        }
+        else {
+            if (ctx.localVariableDeclaration().decimalVariable() != null) {
+                //System.out.println("decimal");
+                var = createDecimalVariable(ctx.localVariableDeclaration().decimalVariable());
 
-        if(ctx.constVariableDeclaration() != null && var != null){
-            var.setConstant(true);
+            } else if (ctx.localVariableDeclaration().boolVariable() != null) {
+                //System.out.println("Bool");
+                var = createBoolVariable(ctx.localVariableDeclaration().boolVariable());
+            }
         }
         return var;
     }
@@ -38,19 +50,27 @@ public class VariableV extends CeskaJavaBaseVisitor<Variable> {
         String name = boolVariable.identifier().getText();
         // boolean isTrue = true;
         if (boolVariable.boolValue().booleanValue() != null) {
-            boolean val = Boolean.parseBoolean(boolVariable.boolValue().booleanValue().getText());
-
+            String s = boolVariable.boolValue().booleanValue().getText();
+            boolean val;
+            if(s.equals("pravda")){
+                val = true;
+            }
+            else if(s.equals("lez")){
+                val = false;
+            }
+            else {
+                System.out.println("Bool variable bave wrong value");
+                return null;
+            }
             var = new Variable(name, new Value(val), VariableTypeEnum.BOOLEAN);
             var.setVariableDeclaration(VariableTypeDeclarationEnum.BOOLEAN);
         }
-        //boolean ifFalse = isTrue;
         else if (boolVariable.boolValue().identifier() != null) {
             String val = boolVariable.boolValue().identifier().getText();
 
             var = new Variable(name, new Value(val), VariableTypeEnum.BOOLEAN);
             var.setVariableDeclaration(VariableTypeDeclarationEnum.IDENTIFIER);
         }
-        //boolean reult = isTrue && isFalse;
         else if (boolVariable.boolValue().expressionBody() != null){
             Expression ex = new ExpressionBodyV().visit(boolVariable.boolValue().expressionBody());
 

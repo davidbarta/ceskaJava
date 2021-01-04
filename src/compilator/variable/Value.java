@@ -16,6 +16,8 @@ public class Value {
     }
 
     public int toBooleanAsInt(){
+
+        //return 1;
         return Boolean.parseBoolean(this.value.toString()) ? 1 : 0;
     }
 }

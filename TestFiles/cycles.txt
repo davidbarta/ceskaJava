@@ -1,0 +1,19 @@
+{
+	cislo i = 0;
+	toc(i < 5){
+	i = i+1;
+	}
+	
+	pro{
+	i = i-1
+	}toc(i>0)
+	
+	tocpro(j = 2...8){
+		i = j;
+	}
+	
+	opakuj{
+	
+	i = i +2;
+	}dokud(i >= 10)
+}

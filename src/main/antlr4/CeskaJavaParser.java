@@ -54,7 +54,7 @@ public class CeskaJavaParser extends Parser {
 			null, "'...'", "'pravdivost'", "'pravda'", "'lez'", "'cislo'", "'finalni'", 
 			"'pokud'", "'jinak'", "'nazaklade'", "'jestlize'", "'odejdi'", "'tocpro'", 
 			"'toc'", "'pro'", "'opakuj'", "'dokud'", "'vrat'", "'default'", "'void'", 
-			"'constanta'", "'funkce'", "'||'", "'&&'", "'=='", "'!='", "'<'", "'>'", 
+			"'konstanta'", "'funkce'", "'||'", "'&&'", "'=='", "'!='", "'<'", "'>'", 
 			"'<='", "'%'", "'>='", "'+'", "'-'", "'*'", "'/'", "'='", "'?'", "':'", 
 			"'!'", "'X'", "'x'", "'('", "')'", "'{'", "'}'", "';'", "','"
 		};

@@ -334,7 +334,7 @@ public class BlockStatementCompilator extends Compilator{
     private void generateDecInstructions(StatementDeclare statement) {
         Variable var = statement.getVariable();
         if(isInSymbolTable(var.getName())){
-            System.out.println("Variable exists" + var.getName() +"+"+var.getLine());
+            System.out.println("Variable exists: " + var.getName() +", error at line: "+var.getLine());
         }
         else {
             switch (var.getType()) {
@@ -363,6 +363,7 @@ public class BlockStatementCompilator extends Compilator{
             case BOOLEAN:
                 Instruction i = new Instruction(InstructionTypeEnum.LIT,getInstructionCountter(),0,var.getValue().toBooleanAsInt());
                 addInstruction(i);
+                break;
             case METHOD_CALL:
                 new MethodRunsCompilator(var.getMethodRuns(),lvl).run();
                 break;

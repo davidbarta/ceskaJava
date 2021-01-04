@@ -1,0 +1,19 @@
+{
+cislo a = 0;
+pravdivost p=lez;
+
+
+pokud(p && pravda){ 
+a = 30;
+}
+jinak pokud((a == 5) && pravda){
+a = 20;
+}
+jinak pokud(a == 6){
+a = 20;
+}
+jinak{
+a = 100;
+}
+
+}

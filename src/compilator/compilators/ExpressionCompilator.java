@@ -159,7 +159,7 @@ public class ExpressionCompilator extends Compilator{
     private VariableTypeEnum genLogicalInstructions(ExpressionLogical expression) {
         VariableTypeEnum leftE = processExpression(expression.getLeft());
         VariableTypeEnum rightE = processExpression(expression.getRight());
-        int res = checkVarTypes(leftE,rightE);
+        int res = checkVarTypes(leftE,rightE, VariableTypeEnum.BOOLEAN);
         if(res == 0){
             System.out.println("Error generate logical instructions: " + expression.getLine());
             return  null;
@@ -180,7 +180,7 @@ public class ExpressionCompilator extends Compilator{
     private VariableTypeEnum genReationalInstructions(ExpressionRelational expression) {
         VariableTypeEnum leftE = processExpression(expression.getLeft());
         VariableTypeEnum rightE = processExpression(expression.getRight());
-        int res = checkVarTypes(leftE,rightE);
+        int res = checkVarTypes(leftE,rightE,VariableTypeEnum.INT);
         if(res == 0){
             System.out.println("Error generate relational instructions: " + expression.getLine());
             return  null;
@@ -192,7 +192,7 @@ public class ExpressionCompilator extends Compilator{
     private VariableTypeEnum genAdditiveInstructions(ExpressionAdditive expression) {
         VariableTypeEnum leftE = processExpression(expression.getLeftExpression());
         VariableTypeEnum rightE = processExpression(expression.getRightExpression());
-        int res = checkVarTypes(leftE,rightE);
+        int res = checkVarTypes(leftE,rightE, VariableTypeEnum.INT);
         if(res == 0){
             System.out.println("Error generate additive instructions: " + expression.getLine());
             return  null;
@@ -204,7 +204,7 @@ public class ExpressionCompilator extends Compilator{
     private VariableTypeEnum genMultiplicationInstructions(ExpressionMult expression) {
         VariableTypeEnum leftE = processExpression(expression.getLeft());
         VariableTypeEnum rightE = processExpression(expression.getRight());
-        int res = checkVarTypes(leftE,rightE);
+        int res = checkVarTypes(leftE,rightE, VariableTypeEnum.INT);
         if(res == 0){
             System.out.println("Error generate Multiplication instructions: " + expression.getLine());
             return  null;
@@ -213,8 +213,8 @@ public class ExpressionCompilator extends Compilator{
         return VariableTypeEnum.INT;
     }
 
-    private int checkVarTypes(VariableTypeEnum leftE, VariableTypeEnum rightE) {
-        if(leftE != VariableTypeEnum.INT || rightE != VariableTypeEnum.INT){
+    private int checkVarTypes(VariableTypeEnum leftE, VariableTypeEnum rightE, VariableTypeEnum expected) {
+        if(leftE != expected || rightE != expected){
             System.out.println("Error during check variables");
             return 0;
         }

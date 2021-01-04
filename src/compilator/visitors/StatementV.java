@@ -13,6 +13,22 @@ import java.util.HashMap;
 import java.util.List;
 
 public class StatementV extends CeskaJavaBaseVisitor<Statement> {
+    @Override
+    public IfStatement visitStatementIf(CeskaJavaParser.StatementIfContext ctx){
+        Expression ex = new ExpressionV().visit(ctx.expression());
+        ex.setExpectedReturnType(VariableTypeEnum.BOOLEAN);
+        BlockStatement statementIf = null;
+        BlockStatement statementElse = null;
+        if (ctx.body(0).blockBody() != null){
+            statementIf = new BlockBodyV().visit(ctx.body(0).blockBody());
+        }
+        if (ctx.body(1)!= null){
+            if (ctx.body(1).blockBody() != null){
+                statementElse = new BlockBodyV().visit(ctx.body(1).blockBody());
+            }
+        }
+        return new IfStatement(ex,statementIf,statementElse,ctx.start.getLine());
+    }
 
     @Override
     public Statement visitStatementVariableDeclaration(CeskaJavaParser.StatementVariableDeclarationContext ctx) {
@@ -107,21 +123,6 @@ public class StatementV extends CeskaJavaBaseVisitor<Statement> {
         ForStatement fr = new ForStatement(fh,bodyFor,ctx.start.getLine());
         return fr;
     }
-    @Override
-    public IfStatement visitStatementIf(CeskaJavaParser.StatementIfContext ctx){
-        Expression ex = new ExpressionV().visit(ctx.expression());
-        ex.setExpectedReturnType(VariableTypeEnum.BOOLEAN);
-        BlockStatement statementIf = null;
-        BlockStatement statementElse = null;
-        if (ctx.body(0).blockBody() != null){
-            statementIf = new BlockBodyV().visit(ctx.body(0).blockBody());
-        }
-        if (ctx.body(1)!= null){
-            if (ctx.body(1).blockBody() != null){
-                statementElse = new BlockBodyV().visit(ctx.body(1).blockBody());
-            }
-        }
-        return new IfStatement(ex,statementIf,statementElse,ctx.start.getLine());
-    }
+
 
 }

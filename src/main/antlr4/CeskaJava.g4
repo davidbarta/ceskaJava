@@ -26,7 +26,7 @@ UNTIL:'dokud';
 RETURN: 'vrat';
 DEFAULT : 'default' ;
 VOID  : 'void' ;
-CONST : 'constanta' ;
+CONST : 'konstanta' ;
 FUNCTION_KEYWORD : 'funkce' ;
 /*------OPERATORY-------*/
 OR:         '||' ;
